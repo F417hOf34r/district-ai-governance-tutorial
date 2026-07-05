@@ -204,24 +204,279 @@ main {
   padding: 2.5em 1.25em 4em;
 }
 
-.hero {
-  text-align: center;
-  padding: 2em 0 1em;
-}
-.hero-lede {
-  max-width: 60ch;
-  margin: 0 auto 1.5em;
-  font-size: 1.1rem;
-}
-.hero-actions {
-  display: flex;
-  gap: 1em;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
 .section {
   margin-top: 2.5em;
+}
+
+/* Home page (mirrors asamanagementgroup.com layout) */
+.home-page section {
+  padding: 5rem 0;
+}
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 1.75rem;
+}
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-l);
+  font-weight: 500;
+  display: inline-block;
+  margin-bottom: 0.75em;
+}
+.section-header {
+  max-width: 680px;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+.section-header h2 {
+  margin-bottom: 0.5em;
+}
+
+.hero-image {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  padding: 8rem 0 5rem;
+  overflow: hidden;
+}
+.hero-image::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: var(--hero-image);
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  filter: saturate(0.95) brightness(0.8);
+}
+.hero-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(to right, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.45) 45%, rgba(0, 0, 0, 0.15) 100%),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.6) 100%);
+}
+.hero-image .container {
+  position: relative;
+  z-index: 2;
+}
+.hero-image-content {
+  max-width: 700px;
+}
+.hero-image-content h1 {
+  color: var(--text-primary);
+  margin-bottom: 0.6em;
+}
+.hero-sub {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 560px;
+  margin-bottom: 1.75em;
+  line-height: 1.7;
+}
+.hero-image-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25em;
+  flex-wrap: wrap;
+}
+.hero-secondary-link {
+  background: transparent;
+  border-color: var(--border) !important;
+}
+.hero-secondary-link:hover {
+  border-color: var(--border-hover) !important;
+  color: var(--gold-l);
+}
+
+/* Capability-style cards */
+.cap-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.cap-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.85rem 1.85rem 1.65rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.cap-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+}
+.cap-card h3 {
+  font-size: 1.1rem;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  flex-wrap: wrap;
+}
+.cap-card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  flex: 1;
+}
+.cap-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-family: var(--mono);
+  color: var(--gold-l);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-top: 0.5em;
+}
+.cap-card-link svg {
+  width: 0.9em;
+  height: 0.9em;
+  stroke-width: 2.2;
+  transition: transform 0.2s ease;
+}
+.cap-card:hover .cap-card-link svg {
+  transform: translateX(3px);
+}
+
+/* Audience cards */
+#audiences {
+  background: var(--bg-elevated);
+}
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  max-width: 980px;
+  margin: 0 auto;
+}
+.audience {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.85rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.audience:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+}
+.audience-tag {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-l);
+  font-weight: 500;
+}
+.audience p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* Engagement / process steps */
+#engagement {
+  position: relative;
+}
+.engagement-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.engagement-step {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.85rem 1.5rem 1.65rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: border-color 0.3s ease, transform 0.3s ease, background 0.3s ease;
+}
+.engagement-step:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-elevated);
+  transform: translateY(-2px);
+}
+.engagement-num {
+  font-family: var(--mono);
+  color: var(--gold-l);
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+.engagement-step h3 {
+  font-size: 1.05rem;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.engagement-step p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  margin: 0;
+}
+
+/* Closing CTA banner */
+.cta-banner {
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--border);
+}
+.cta-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 55% 60% at 50% 100%, var(--accent-glow) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cta-banner .container {
+  position: relative;
+  z-index: 1;
+}
+.cta-banner p {
+  max-width: 520px;
+  margin: 0 auto 1.5em;
+}
+
+@media (max-width: 900px) {
+  .cap-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+  .audience-grid {
+    grid-template-columns: 1fr;
+  }
+  .engagement-steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .hero-image {
+    min-height: 70vh;
+    padding: 7rem 0 3rem;
+  }
+  .engagement-steps {
+    grid-template-columns: 1fr;
+  }
 }
 
 .page-lede {
@@ -279,13 +534,6 @@ main {
   border: 1px solid var(--gold);
   border-radius: 999px;
   padding: 0.15em 0.6em;
-}
-
-.about-assessment {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 1.5em;
 }
 
 /* Two column lists */
