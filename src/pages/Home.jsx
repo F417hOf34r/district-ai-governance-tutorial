@@ -1,5 +1,6 @@
 import { DOMAINS, TOTAL_QUESTION_COUNT } from '../data/rubric.js'
 import { MAX_SCORE } from '../lib/scoring.js'
+import { STATS, TIMELINE, DEVELOPMENTS, GLOSSARY, MYTHS } from '../data/homeContent.js'
 import Button from '../components/Button.jsx'
 import heroImage from '../assets/hero-k12.jpg'
 
@@ -82,6 +83,68 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="stats">
+        <div className="container">
+          <div className="section-header">
+            <span className="eyebrow eyebrow-gold">Why This Matters</span>
+            <h2>The numbers behind the urgency</h2>
+          </div>
+          <div className="stat-row">
+            {STATS.map((s) => (
+              <div key={s.label} className="stat-card">
+                <div className="stat-num">{s.num}</div>
+                <div className="stat-label">{s.label}</div>
+                <p className="stat-note">{s.note}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="timeline">
+        <div className="container">
+          <div className="section-header">
+            <span className="eyebrow">What Changed</span>
+            <h2>The regulatory landscape, at a glance</h2>
+            <p>Districts aren't imagining the pressure — it's coming from real, dated policy shifts.</p>
+          </div>
+          <div className="timeline-row">
+            {TIMELINE.map((t) => (
+              <div key={t.title} className="timeline-item">
+                <span className="timeline-date">{t.date}</span>
+                <h3>{t.title}</h3>
+                <p>{t.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="developments">
+        <div className="container">
+          <div className="section-header">
+            <span className="eyebrow">Recent Developments</span>
+            <h2>K-12 cybersecurity & AI governance in the news</h2>
+            <p>
+              A curated, periodically-updated list — not a live feed — so it stays accurate
+              and readable rather than noisy.
+            </p>
+          </div>
+          <div className="developments-grid">
+            {DEVELOPMENTS.map((d) => (
+              <div key={d.title} className="development-card">
+                <span className="development-date">{d.date}</span>
+                <h3>{d.title}</h3>
+                <p>{d.description}</p>
+                <a href={d.source.url} target="_blank" rel="noreferrer" className="development-source">
+                  {d.source.label} &rarr;
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="audiences">
         <div className="container">
           <div className="section-header">
@@ -97,6 +160,41 @@ export default function Home() {
                 <p>{a.description}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="glossary-myths">
+        <div className="container">
+          <div className="two-col">
+            <div>
+              <div className="section-header section-header-left">
+                <span className="eyebrow eyebrow-gold">Key Terms</span>
+                <h2>A quick glossary</h2>
+              </div>
+              <dl className="glossary-strip">
+                {GLOSSARY.map((g) => (
+                  <div key={g.term} className="glossary-item">
+                    <dt><a href={`/tutorial/${g.domainId}`}>{g.term}</a></dt>
+                    <dd>{g.definition}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+            <div>
+              <div className="section-header section-header-left">
+                <span className="eyebrow eyebrow-gold">Common Objections</span>
+                <h2>Myths vs. reality</h2>
+              </div>
+              <div className="myth-list">
+                {MYTHS.map((m) => (
+                  <div key={m.myth} className="myth-card">
+                    <p className="myth-text">{m.myth}</p>
+                    <p className="myth-reality">{m.reality}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>

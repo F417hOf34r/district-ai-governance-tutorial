@@ -356,9 +356,6 @@ main {
 }
 
 /* Audience cards */
-#audiences {
-  background: var(--bg-elevated);
-}
 .audience-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -392,6 +389,169 @@ main {
   color: var(--text-muted);
   font-size: 0.95rem;
   margin: 0;
+}
+
+/* Alternating section backgrounds for visual rhythm */
+#stats, #developments, #glossary-myths {
+  background: var(--bg-elevated);
+}
+
+/* Stat callouts */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.stat-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+}
+.stat-num {
+  font-family: var(--mono);
+  color: var(--gold-l);
+  font-weight: 500;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.stat-label {
+  color: var(--text-h);
+  font-weight: 500;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  margin-bottom: 0.6rem;
+}
+.stat-note {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* Regulatory timeline */
+.timeline-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.timeline-item {
+  border-left: 2px solid var(--gold);
+  padding-left: 1.25rem;
+}
+.timeline-date {
+  font-family: var(--mono);
+  color: var(--gold-l);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.timeline-item h3 {
+  font-size: 1rem;
+  margin-bottom: 0.3rem;
+}
+.timeline-item p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* Recent developments (curated, not live) */
+.developments-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+.development-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.6rem 1.6rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.development-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+}
+.development-date {
+  font-family: var(--mono);
+  color: var(--gold-l);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.development-card h3 {
+  font-size: 1.02rem;
+  margin: 0;
+}
+.development-card p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  flex: 1;
+  margin: 0;
+}
+.development-source {
+  font-size: 0.82rem;
+  color: var(--gold-l);
+}
+
+/* Glossary + myths (two-column) */
+.section-header-left {
+  text-align: left;
+  max-width: none;
+  margin: 0 0 1.5rem;
+}
+.glossary-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin: 0;
+}
+.glossary-item dt {
+  font-weight: 600;
+}
+.glossary-item dt a {
+  color: var(--text-h);
+}
+.glossary-item dt a:hover {
+  color: var(--gold-l);
+}
+.glossary-item dd {
+  margin: 0.2rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+.myth-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.myth-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.1rem 1.3rem;
+}
+.myth-text {
+  font-style: italic;
+  color: var(--text-dim);
+  margin: 0 0 0.4em;
+}
+.myth-reality {
+  color: var(--text-h);
+  margin: 0;
+  font-size: 0.92rem;
 }
 
 /* Engagement / process steps */
@@ -467,6 +627,12 @@ main {
   }
   .engagement-steps {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .stat-row, .timeline-row, .developments-grid {
+    grid-template-columns: 1fr;
+  }
+  #glossary-myths .two-col {
+    grid-template-columns: 1fr;
   }
 }
 @media (max-width: 600px) {
