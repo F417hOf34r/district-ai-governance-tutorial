@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import { DOMAINS_BY_ID } from '../data/rubric.js'
-import Button from '../components/Button.jsx'
+import NextSection from '../components/NextSection.jsx'
 
 export default function TutorialDomain() {
   const { domainSlug } = useParams()
@@ -54,10 +54,7 @@ export default function TutorialDomain() {
         </ul>
       </section>
 
-      <section className="section domain-cta">
-        <h2>Ready to check where your district stands?</h2>
-        <Button to="/assessment" variant="primary">Start the self-assessment &rarr;</Button>
-      </section>
+      <NextSection currentId={domain.id} />
     </div>
   )
 }

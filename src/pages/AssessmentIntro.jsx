@@ -2,16 +2,43 @@ import { useNavigate } from 'react-router-dom'
 import { useAssessment } from '../context/AssessmentContext.jsx'
 import { ROLE_OPTIONS, ENROLLMENT_OPTIONS, SCHOOL_COUNT_OPTIONS, GOAL_OPTIONS } from '../data/intake.js'
 import { TOTAL_QUESTION_COUNT } from '../data/rubric.js'
+import { scoreAnswers } from '../lib/scoring.js'
 import Button from '../components/Button.jsx'
 
 export default function AssessmentIntro() {
   const navigate = useNavigate()
-  const { intake, setIntakeField, toggleGoal, completeIntake } = useAssessment()
+  const { intake, setIntakeField, toggleGoal, completeIntake, answers, skippedOptional, hasAnyAnswers, resetAnswers } = useAssessment()
 
   function handleSubmit(e) {
     e.preventDefault()
     completeIntake()
     navigate('/assessment/questions')
+  }
+
+  if (hasAnyAnswers) {
+    const result = scoreAnswers(answers, skippedOptional)
+    const isComplete = result.totalAnswered === result.totalQuestions
+
+    return (
+      <div className="page">
+        <h1>Welcome back</h1>
+        <p className="page-lede">
+          {isComplete
+            ? "You already completed this assessment in this browser."
+            : "You have an assessment in progress, saved in this browser."}
+        </p>
+        {intake.districtName && <p><strong>{intake.districtName}</strong></p>}
+        <p className="helper-text">{result.totalAnswered} of {result.totalQuestions} questions answered.</p>
+        <div className="results-actions">
+          {isComplete ? (
+            <Button variant="primary" to="/results">View your results</Button>
+          ) : (
+            <Button variant="primary" to="/assessment/questions">Resume where you left off</Button>
+          )}
+          <Button variant="ghost" onClick={resetAnswers}>Start over</Button>
+        </div>
+      </div>
+    )
   }
 
   return (
@@ -26,12 +53,12 @@ export default function AssessmentIntro() {
       <section className="section intro-steps">
         <h2>How it works</h2>
         <ol>
-          <li>Tell us a little about your district and what you're hoping to get out of this (below) — takes under a minute.</li>
-          <li>Answer {TOTAL_QUESTION_COUNT} questions, one governance domain at a time — about 10–15 minutes. You can go back, save and exit, and pick up where you left off.</li>
+          <li>Tell us a little about your district and what you're hoping to get out of this (below). It takes under a minute.</li>
+          <li>Answer {TOTAL_QUESTION_COUNT} questions, one governance domain at a time, about 10 to 15 minutes. You can go back, save and exit, and pick up where you left off.</li>
           <li>Get a scored report broken down by domain, which you can print or download to share with your team.</li>
         </ol>
         <p className="helper-text">
-          Nothing you enter is sent anywhere — everything stays in your own browser. The
+          Nothing you enter is sent anywhere. Everything stays in your own browser. The
           questions below just help make your final report more useful to you.
         </p>
       </section>

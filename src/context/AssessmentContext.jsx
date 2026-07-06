@@ -39,7 +39,7 @@ export function AssessmentProvider({ children }) {
       )
       setLastSavedAt(Date.now())
     } catch {
-      // localStorage unavailable (private browsing, quota) — assessment still works in-memory
+      // localStorage unavailable (private browsing, quota): assessment still works in-memory
     }
   }, [answers, skippedOptional, intake, intakeComplete])
 

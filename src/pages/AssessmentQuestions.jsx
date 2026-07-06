@@ -89,7 +89,7 @@ export default function AssessmentQuestions() {
       </div>
 
       {unansweredInDomain > 0 && (
-        <p className="helper-text">{unansweredInDomain} question{unansweredInDomain === 1 ? '' : 's'} left unanswered in this domain — you can still continue.</p>
+        <p className="helper-text">{unansweredInDomain} question{unansweredInDomain === 1 ? '' : 's'} left unanswered in this domain. You can still continue.</p>
       )}
 
       <div className="assessment-nav">

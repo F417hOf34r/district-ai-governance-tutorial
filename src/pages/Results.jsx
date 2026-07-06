@@ -1,12 +1,18 @@
 import { useState } from 'react'
 import { useAssessment } from '../context/AssessmentContext.jsx'
 import { scoreAnswers, getMaturityTier } from '../lib/scoring.js'
-import { buildReportText, downloadReport } from '../lib/report.js'
+import { downloadPdf } from '../lib/pdf/download.js'
+import GapAssessmentReport from '../lib/pdf/GapAssessmentReport.jsx'
+import PolicyOutline from '../lib/pdf/PolicyOutline.jsx'
+import RiskRegister from '../lib/pdf/RiskRegister.jsx'
+import BoardCadence from '../lib/pdf/BoardCadence.jsx'
 import Button from '../components/Button.jsx'
+import NextSection from '../components/NextSection.jsx'
 
 export default function Results() {
   const { answers, skippedOptional, intake, resetAnswers, hasAnyAnswers } = useAssessment()
   const [confirmingReset, setConfirmingReset] = useState(false)
+  const [downloading, setDownloading] = useState('')
 
   if (!hasAnyAnswers) {
     return (
@@ -20,6 +26,8 @@ export default function Results() {
 
   const result = scoreAnswers(answers, skippedOptional)
   const tier = getMaturityTier(result.percent)
+  const namePart = intake.districtName ? intake.districtName.replace(/[^a-z0-9]+/gi, '-').toLowerCase() : 'district'
+  const docProps = { intake, result, tier, answers, skippedOptional }
 
   function handleReset() {
     if (!confirmingReset) {
@@ -30,11 +38,41 @@ export default function Results() {
     setConfirmingReset(false)
   }
 
-  function handleDownload() {
-    const text = buildReportText({ intake, result, tier, answers, skippedOptional })
-    const namePart = intake.districtName ? intake.districtName.replace(/[^a-z0-9]+/gi, '-').toLowerCase() : 'district'
-    downloadReport(text, `ai-governance-assessment-${namePart}.txt`)
+  async function handleDownload(kind, element, filename) {
+    setDownloading(kind)
+    try {
+      await downloadPdf(element, filename)
+    } finally {
+      setDownloading('')
+    }
   }
+
+  const DOWNLOADS = [
+    {
+      kind: 'gap-report',
+      label: 'Gap Assessment Report',
+      filename: `gap-assessment-report-${namePart}.pdf`,
+      element: <GapAssessmentReport {...docProps} />,
+    },
+    {
+      kind: 'policy-outline',
+      label: 'AI Acceptable-Use Policy Outline',
+      filename: `ai-policy-outline-${namePart}.pdf`,
+      element: <PolicyOutline {...docProps} />,
+    },
+    {
+      kind: 'risk-register',
+      label: 'Risk Register Template',
+      filename: `risk-register-${namePart}.pdf`,
+      element: <RiskRegister {...docProps} />,
+    },
+    {
+      kind: 'board-cadence',
+      label: 'Board Reporting Cadence',
+      filename: `board-reporting-cadence-${namePart}.pdf`,
+      element: <BoardCadence {...docProps} />,
+    },
+  ]
 
   return (
     <div className="page results-page">
@@ -58,52 +96,74 @@ export default function Results() {
         <p>{tier.description}</p>
         <p className="score-note">
           {result.totalAnswered} of {result.totalQuestions} questions answered
-          {skippedOptional && ' — Infrastructure & Cybersecurity was skipped and is excluded from this score'}.
+          {skippedOptional && ' (Infrastructure and Cybersecurity was skipped and is excluded from this score)'}.
         </p>
       </section>
 
       <section className="section">
         <h2>By domain</h2>
-        <table className="domain-table">
-          <thead>
-            <tr>
-              <th scope="col">Domain</th>
-              <th scope="col">Score</th>
-            </tr>
-          </thead>
-          <tbody>
-            {result.byDomain.map((d) => (
-              <tr key={d.id}>
-                <th scope="row">
-                  {d.title}
-                  {d.skipped && ' (skipped)'}
-                </th>
-                <td>
-                  {d.skipped ? '—' : (
-                    <>
-                      <span className="domain-score-value">{d.earnedPoints} / {d.maxPoints}</span>
-                      <span className="domain-score-bar" aria-hidden="true">
-                        <span
-                          className="domain-score-fill"
-                          style={{ width: `${d.maxPoints === 0 ? 0 : (d.earnedPoints / d.maxPoints) * 100}%` }}
-                        />
-                      </span>
-                    </>
-                  )}
-                </td>
+        <div className="table-scroll">
+          <table className="domain-table">
+            <thead>
+              <tr>
+                <th scope="col">Domain</th>
+                <th scope="col">Score</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {result.byDomain.map((d) => (
+                <tr key={d.id}>
+                  <th scope="row">
+                    {d.title}
+                    {d.skipped && ' (skipped)'}
+                  </th>
+                  <td>
+                    {d.skipped ? 'Skipped' : (
+                      <>
+                        <span className="domain-score-value">{d.earnedPoints} / {d.maxPoints}</span>
+                        <span className="domain-score-bar" aria-hidden="true">
+                          <span
+                            className="domain-score-fill"
+                            style={{ width: `${d.maxPoints === 0 ? 0 : (d.earnedPoints / d.maxPoints) * 100}%` }}
+                          />
+                        </span>
+                      </>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section className="section no-print">
+        <h2>Download your reports</h2>
+        <p className="helper-text">
+          Each report is generated in your browser as a PDF. Nothing is uploaded or transmitted.
+        </p>
+        <div className="results-actions">
+          {DOWNLOADS.map((doc) => (
+            <Button
+              key={doc.kind}
+              variant="primary"
+              disabled={downloading !== ''}
+              onClick={() => handleDownload(doc.kind, doc.element, doc.filename)}
+            >
+              {downloading === doc.kind ? 'Preparing…' : doc.label}
+            </Button>
+          ))}
+        </div>
       </section>
 
       <div className="results-actions no-print">
-        <Button variant="primary" onClick={handleDownload}>Download report</Button>
         <Button variant="secondary" onClick={() => window.print()}>Print this page</Button>
         <Button variant="ghost" onClick={handleReset}>
-          {confirmingReset ? 'Click again to confirm — this clears all answers' : 'Retake assessment'}
+          {confirmingReset ? 'Click again to confirm, this clears all answers' : 'Retake assessment'}
         </Button>
       </div>
+
+      <NextSection currentId="assessment" />
     </div>
   )
 }

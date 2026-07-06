@@ -7,7 +7,7 @@ export default function Tutorial() {
       <h1>Tutorial</h1>
       <p className="page-lede">
         Six governance domains cover the full picture of responsible AI adoption in a K-12
-        district. Start with whichever domain matters most to you right now — each page explains
+        district. Start with whichever domain matters most to you right now. Each page explains
         why it matters, what good practice looks like, and where to find authoritative guidance.
       </p>
       <div className="card-grid">

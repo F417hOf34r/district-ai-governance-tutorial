@@ -75,7 +75,7 @@ export const MYTHS = [
   },
   {
     myth: '"This is just an IT problem."',
-    reality: 'AI governance touches policy, curriculum, legal compliance, and the classroom — IT can\'t own it alone.',
+    reality: 'AI governance touches policy, curriculum, legal compliance, and the classroom. IT can\'t own it alone.',
   },
   {
     myth: '"We don\'t have budget for this."',

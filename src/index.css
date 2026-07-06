@@ -146,9 +146,16 @@ a {
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 1.4em;
+  flex-wrap: wrap;
+  gap: 0.4em 1.4em;
   margin: 0;
   padding: 0;
+}
+@media (max-width: 900px) {
+  .nav-links {
+    gap: 0.3em 1em;
+    font-size: 0.9rem;
+  }
 }
 .nav-link {
   color: var(--text-muted);
@@ -700,6 +707,7 @@ main {
   border: 1px solid var(--gold);
   border-radius: 999px;
   padding: 0.15em 0.6em;
+  margin-left: 0.5em;
 }
 
 /* Two column lists */
@@ -717,7 +725,7 @@ main {
   color: var(--gold-l);
 }
 .gap-list li::marker {
-  content: '– ';
+  content: '- ';
   color: var(--text-dim);
 }
 .source-list {
@@ -728,12 +736,58 @@ main {
   margin-bottom: 0.5em;
 }
 
+/* Reference list, hanging indent */
+.reference-list {
+  list-style: none;
+  padding: 0;
+}
+.reference-list li {
+  padding-left: 2em;
+  text-indent: -2em;
+  margin-bottom: 0.9em;
+  font-size: 0.95rem;
+  word-break: break-word;
+}
+
 .domain-cta {
   text-align: center;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 2em;
+}
+
+/* Pull quotes */
+.pull-quote {
+  margin: 1.5em 0;
+  padding: 0.2em 0 0.2em 1.25em;
+  border-left: 3px solid var(--gold);
+  font-family: var(--heading-font);
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--text-h);
+}
+
+/* Operating model tiers */
+.tier-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25em;
+  margin-top: 1.2em;
+}
+.tier-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.6em;
+}
+.tier-card .check-list {
+  margin-top: 0.8em;
+}
+@media (max-width: 900px) {
+  .tier-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Buttons */
@@ -988,8 +1042,12 @@ main {
   font-size: 0.9rem;
   color: var(--text-dim);
 }
+.table-scroll {
+  overflow-x: auto;
+}
 .domain-table {
   width: 100%;
+  min-width: 480px;
   border-collapse: collapse;
 }
 .domain-table th, .domain-table td {

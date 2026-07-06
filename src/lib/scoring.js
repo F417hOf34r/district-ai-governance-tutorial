@@ -55,7 +55,7 @@ export function getMaturityTier(percent) {
   if (percent < 40) {
     return {
       label: 'Emerging',
-      description: 'AI governance is largely informal or not yet started. This is the most common starting point — the assessment below points to where to focus first.',
+      description: 'AI governance is largely informal or not yet started. This is the most common starting point. The assessment below points to where to focus first.',
     }
   }
   if (percent < 70) {

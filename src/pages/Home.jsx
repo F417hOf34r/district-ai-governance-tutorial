@@ -46,8 +46,8 @@ export default function Home() {
             <span className="eyebrow eyebrow-gold">AI Policy &middot; Data Privacy &middot; Staff Readiness</span>
             <h1>Responsible AI governance, built for K-12 districts.</h1>
             <p className="hero-sub">
-              A practical tutorial and self-assessment covering six governance domains —
-              from board policy to classroom-level data privacy — so your district knows
+              A practical tutorial and self-assessment covering six governance domains,
+              from board policy to classroom-level data privacy, so your district knows
               where it stands and what to do next.
             </p>
             <div className="hero-image-actions">
@@ -106,7 +106,7 @@ export default function Home() {
           <div className="section-header">
             <span className="eyebrow">What Changed</span>
             <h2>The regulatory landscape, at a glance</h2>
-            <p>Districts aren't imagining the pressure — it's coming from real, dated policy shifts.</p>
+            <p>Districts aren't imagining the pressure: it's coming from real, dated policy shifts.</p>
           </div>
           <div className="timeline-row">
             {TIMELINE.map((t) => (
@@ -126,7 +126,7 @@ export default function Home() {
             <span className="eyebrow">Recent Developments</span>
             <h2>K-12 cybersecurity & AI governance in the news</h2>
             <p>
-              A curated, periodically-updated list — not a live feed — so it stays accurate
+              A curated, periodically-updated list, not a live feed, so it stays accurate
               and readable rather than noisy.
             </p>
           </div>
@@ -222,8 +222,8 @@ export default function Home() {
         <div className="container">
           <h2>Ready to check where your district stands?</h2>
           <p>
-            {TOTAL_QUESTION_COUNT} questions, scored to {MAX_SCORE} points, about 10–15
-            minutes — nothing you enter leaves your browser.
+            {TOTAL_QUESTION_COUNT} questions, scored to {MAX_SCORE} points, about 10 to 15
+            minutes. Nothing you enter leaves your browser.
           </p>
           <Button to="/assessment" variant="primary">Take the self-assessment</Button>
         </div>

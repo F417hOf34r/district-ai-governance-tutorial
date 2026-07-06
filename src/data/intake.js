@@ -11,16 +11,16 @@ export const ROLE_OPTIONS = [
 
 export const ENROLLMENT_OPTIONS = [
   'Under 1,000 students',
-  '1,000–4,999 students',
-  '5,000–14,999 students',
+  '1,000 to 4,999 students',
+  '5,000 to 14,999 students',
   '15,000+ students',
   'Not sure',
 ]
 
 export const SCHOOL_COUNT_OPTIONS = [
-  '1–3 schools',
-  '4–9 schools',
-  '10–24 schools',
+  '1 to 3 schools',
+  '4 to 9 schools',
+  '10 to 24 schools',
   '25+ schools',
   'Not sure',
 ]

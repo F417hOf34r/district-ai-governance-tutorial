@@ -10,8 +10,13 @@ export default function Footer() {
         <nav aria-label="Footer">
           <ul className="footer-links">
             <li><a href="/">Home</a></li>
+            <li><a href="/problem">The Problem</a></li>
+            <li><a href="/frameworks">Frameworks</a></li>
+            <li><a href="/operating-model">Operating Model</a></li>
             <li><a href="/tutorial">Tutorial</a></li>
             <li><a href="/assessment">Assessment</a></li>
+            <li><a href="/best-practices">Best Practices</a></li>
+            <li><a href="/resources">Resources</a></li>
             <li><a href="/about">About</a></li>
           </ul>
         </nav>
