@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useAssessment } from '../context/AssessmentContext.jsx'
-import { ROLE_OPTIONS, ENROLLMENT_OPTIONS, SCHOOL_COUNT_OPTIONS, GOAL_OPTIONS } from '../data/intake.js'
+import { ROLE_OPTIONS, ENROLLMENT_OPTIONS, SCHOOL_COUNT_OPTIONS, GOAL_OPTIONS, STATE_OPTIONS } from '../data/intake.js'
 import { TOTAL_QUESTION_COUNT } from '../data/rubric.js'
 import { scoreAnswers } from '../lib/scoring.js'
 import Button from '../components/Button.jsx'
@@ -75,6 +75,22 @@ export default function AssessmentIntro() {
             onChange={(e) => setIntakeField('districtName', e.target.value)}
             placeholder="e.g., Riverbend County Schools"
           />
+        </div>
+
+        <div className="form-field">
+          <label htmlFor="state">Your state</label>
+          <select
+            id="state"
+            value={intake.state}
+            onChange={(e) => setIntakeField('state', e.target.value)}
+            required
+          >
+            <option value="" disabled>Select one&hellip;</option>
+            {STATE_OPTIONS.map((s) => <option key={s} value={s}>{s}</option>)}
+          </select>
+          <p className="helper-text">
+            Your results will include a summary of the AI guidance your state has published.
+          </p>
         </div>
 
         <div className="form-row">

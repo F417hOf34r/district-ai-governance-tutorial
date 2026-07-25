@@ -19,8 +19,8 @@ export const STATS = [
 export const TIMELINE = [
   {
     date: 'Jan 2025',
-    title: 'GaDOE publishes statewide AI guidance',
-    description: 'Georgia becomes one of the first states to issue a formal K-12 AI framework, including a "traffic light" system for classifying AI use.',
+    title: 'States begin publishing statewide AI guidance',
+    description: 'Early-moving state education departments issue formal K-12 AI frameworks, several built around a "traffic light" system for classifying AI use.',
   },
   {
     date: 'Apr 2025',
@@ -29,17 +29,17 @@ export const TIMELINE = [
   },
   {
     date: '2031',
-    title: 'Georgia HB 487 graduation requirement',
+    title: 'AI literacy as a graduation requirement',
     description: 'State legislation moves AI literacy toward a formal requirement for high school graduation.',
   },
 ]
 
 export const DEVELOPMENTS = [
   {
-    title: 'GaDOE Publishes Statewide AI Guidance',
+    title: 'States Publish Statewide K-12 AI Guidance',
     date: 'January 2025',
-    description: 'Georgia becomes one of the first states to issue a formal K-12 AI framework, including a "traffic light" system classifying prohibited, cautious, and encouraged AI uses.',
-    source: { label: 'Georgia Department of Education', url: 'https://www.gadoe.org/' },
+    description: 'A wave of state education departments issue formal K-12 AI frameworks, many of them classifying prohibited, cautious, and encouraged AI uses with a "traffic light" system.',
+    source: { label: 'State AI guidance tracker (Ballotpedia)', url: 'https://ballotpedia.org/AI_guidance_issued_by_state_departments_of_education' },
   },
   {
     title: 'PowerSchool Breach Exposes Tens of Millions of Student Records',
@@ -65,7 +65,7 @@ export const GLOSSARY = [
   { term: 'FERPA', definition: 'The federal law protecting student education records.', domainId: 'data-privacy' },
   { term: 'COPPA', definition: 'Requires verifiable parental consent before collecting data from kids under 13.', domainId: 'data-privacy' },
   { term: 'IDEA', definition: 'Governs special-education services and restricts AI in IEP decisions.', domainId: 'data-privacy' },
-  { term: 'Traffic light framework', definition: 'GaDOE\'s system for classifying AI use as prohibited, cautious, or encouraged.', domainId: 'policy-governance' },
+  { term: 'Traffic light framework', definition: 'The system used by several state AI frameworks to classify AI use as prohibited, cautious, or encouraged.', domainId: 'policy-governance' },
 ]
 
 export const MYTHS = [

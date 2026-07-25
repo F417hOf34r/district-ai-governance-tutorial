@@ -109,4 +109,4 @@ export function formatDate() {
   return new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })
 }
 
-export const SITE_NAME = 'District AI Governance Tutorial'
+export const SITE_NAME = 'District Cybersecurity & AI Governance Tutorial'

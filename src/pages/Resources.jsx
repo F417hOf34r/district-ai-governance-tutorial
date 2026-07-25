@@ -13,7 +13,7 @@ const LEARN_MORE = [
     group: 'AI Governance',
     links: [
       { label: 'CoSN Generative AI Maturity Tool', url: 'https://www.cosn.org/ai/', description: 'A staged maturity model built specifically for K-12 AI adoption.' },
-      { label: 'Georgia Department of Education AI Guidance', url: 'https://www.gadoe.org/', description: 'One of the earliest and most widely referenced state traffic light frameworks.' },
+      { label: 'U.S. Department of Education, Office of Educational Technology', url: 'https://tech.ed.gov/', description: 'Federal guidance on AI in teaching and learning that applies regardless of which state a district sits in.' },
       { label: 'State AI guidance tracker (Ballotpedia)', url: 'https://ballotpedia.org/AI_guidance_issued_by_state_departments_of_education', description: 'A running tracker of every state department of education\'s published AI guidance.' },
     ],
   },

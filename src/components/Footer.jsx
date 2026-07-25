@@ -3,8 +3,8 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="site-footer-inner">
         <p>
-          Developed as a capstone project for ISSC698, informed by the Georgia Department of
-          Education's AI guidance and federal K-12 privacy law (FERPA, COPPA, IDEA). Not affiliated
+          Developed as a capstone project for ISSC698, informed by published state department of
+          education AI guidance and federal K-12 privacy law (FERPA, COPPA, IDEA). Not affiliated
           with any school district or vendor.
         </p>
         <nav aria-label="Footer">

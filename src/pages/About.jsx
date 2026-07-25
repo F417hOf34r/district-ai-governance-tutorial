@@ -4,15 +4,15 @@ export default function About() {
       <h1>About this project</h1>
       <p>
         This site was developed as a capstone project for ISSC698 (Managerial Cybersecurity
-        Website Tutorial). It presents a self-assessment framework for K-12 district AI
-        governance, organized around six domains: Policy &amp; Governance, Data Privacy &amp;
+        Website Tutorial). It presents a self-assessment framework for K-12 district
+        cybersecurity and AI governance, organized around six domains: Policy &amp; Governance, Data Privacy &amp;
         Legal Compliance, AI Tool Inventory &amp; Vendor Vetting, Staff Readiness &amp;
         Professional Development, Student &amp; Parent Awareness, and Infrastructure &amp;
         Cybersecurity.
       </p>
       <p>
-        The content is informed by the Georgia Department of Education's AI guidance for schools
-        and federal K-12 privacy and disability law (FERPA, COPPA, IDEA, and PPRA), along with
+        The content is informed by the AI guidance published by state departments of education
+        and by federal K-12 privacy and disability law (FERPA, COPPA, IDEA, and PPRA), along with
         general cybersecurity best practice from CISA and the NIST AI Risk Management Framework.
         It is not affiliated with any specific school district, vendor, or consulting
         organization.
@@ -24,7 +24,7 @@ export default function About() {
       </p>
       <h2>Sources referenced throughout this site</h2>
       <ul className="source-list">
-        <li><a href="https://www.gadoe.org/" target="_blank" rel="noreferrer">Georgia Department of Education</a></li>
+        <li><a href="https://ballotpedia.org/AI_guidance_issued_by_state_departments_of_education" target="_blank" rel="noreferrer">State AI guidance tracker (Ballotpedia)</a></li>
         <li><a href="https://studentprivacy.ed.gov/" target="_blank" rel="noreferrer">Student Privacy Policy Office (FERPA &amp; PPRA)</a></li>
         <li><a href="https://www.ftc.gov/business-guidance/privacy-security/childrens-privacy" target="_blank" rel="noreferrer">FTC: Children's Online Privacy Protection Act (COPPA)</a></li>
         <li><a href="https://sites.ed.gov/idea/" target="_blank" rel="noreferrer">U.S. Dept. of Education: IDEA</a></li>

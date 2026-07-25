@@ -1,4 +1,5 @@
 import { Document, Page, Text, View } from '@react-pdf/renderer'
+import { findStateGuidance, stateGuidanceRecommendation, stateGuidanceMeta } from '../stateGuidance.js'
 import { pdfStyles } from './theme.js'
 import { DocHeader, DocFooter } from './PdfChrome.jsx'
 
@@ -43,6 +44,7 @@ export default function PolicyOutline({ intake, result }) {
     .map((id) => result.byDomain.find((d) => d.id === id))
     .filter(Boolean)
     .sort((a, b) => (a.earnedPoints / a.maxPoints) - (b.earnedPoints / b.maxPoints))
+  const stateGuidance = findStateGuidance(intake.state)
 
   return (
     <Document title="AI Acceptable-Use Policy Outline">
@@ -54,6 +56,22 @@ export default function PolicyOutline({ intake, result }) {
           district scored on the related assessment domain, so the area needing the most
           attention appears first.
         </Text>
+
+        {stateGuidance && (
+          <View>
+            <Text style={pdfStyles.sectionTitle}>Your state's guidance</Text>
+            <Text style={pdfStyles.paragraph}>
+              {stateGuidance.state}: {stateGuidance.status}
+              {stateGuidanceMeta(stateGuidance) ? ` (${stateGuidanceMeta(stateGuidance)})` : ''}
+            </Text>
+            <Text style={pdfStyles.paragraph}>{stateGuidance.summary}</Text>
+            <Text style={pdfStyles.paragraph}>{stateGuidanceRecommendation(stateGuidance)}</Text>
+            <Text style={pdfStyles.muted}>
+              Draft each section below against this framework, then confirm the finished policy
+              covers every state-required element.
+            </Text>
+          </View>
+        )}
 
         {orderedDomains.map((domain, index) => {
           const pct = Math.round((domain.earnedPoints / domain.maxPoints) * 100)

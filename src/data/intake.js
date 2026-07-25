@@ -1,3 +1,9 @@
+import STATES from './states.json'
+
+// Every state and territory tracked in states.json, so intake and the state guidance
+// callout on the results page always stay in sync with the Best Practices dataset.
+export const STATE_OPTIONS = STATES.map((s) => s.state)
+
 export const ROLE_OPTIONS = [
   'Superintendent',
   'Assistant Superintendent / Cabinet',
@@ -37,6 +43,7 @@ export const GOAL_OPTIONS = [
 export const EMPTY_INTAKE = {
   role: '',
   districtName: '',
+  state: '',
   enrollment: '',
   schoolCount: '',
   goals: [],

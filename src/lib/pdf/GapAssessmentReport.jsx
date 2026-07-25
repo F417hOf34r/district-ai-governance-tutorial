@@ -1,5 +1,6 @@
 import { Document, Page, Text, View } from '@react-pdf/renderer'
 import { DOMAINS } from '../../data/rubric.js'
+import { findStateGuidance, stateGuidanceRecommendation, stateGuidanceMeta } from '../stateGuidance.js'
 import { pdfStyles } from './theme.js'
 import { DocHeader, DocFooter } from './PdfChrome.jsx'
 
@@ -7,6 +8,7 @@ export default function GapAssessmentReport({ intake, result, tier, answers, ski
   const weakestFirst = [...result.byDomain]
     .filter((d) => !d.skipped)
     .sort((a, b) => (a.earnedPoints / a.maxPoints) - (b.earnedPoints / b.maxPoints))
+  const stateGuidance = findStateGuidance(intake.state)
 
   return (
     <Document title="Gap Assessment Report">
@@ -22,6 +24,19 @@ export default function GapAssessmentReport({ intake, result, tier, answers, ski
           {result.totalAnswered} of {result.totalQuestions} questions answered
           {skippedOptional ? '. Infrastructure and Cybersecurity was skipped and excluded from this score.' : '.'}
         </Text>
+
+        {stateGuidance && (
+          <View>
+            <Text style={pdfStyles.sectionTitle}>Your state's guidance</Text>
+            <Text style={pdfStyles.paragraph}>
+              {stateGuidance.state}: {stateGuidance.status}
+              {stateGuidanceMeta(stateGuidance) ? ` (${stateGuidanceMeta(stateGuidance)})` : ''}
+            </Text>
+            <Text style={pdfStyles.paragraph}>{stateGuidance.summary}</Text>
+            <Text style={pdfStyles.paragraph}>{stateGuidanceRecommendation(stateGuidance)}</Text>
+            <Text style={pdfStyles.muted}>State guidance last reviewed {stateGuidance.lastReviewed}.</Text>
+          </View>
+        )}
 
         <Text style={pdfStyles.sectionTitle}>Score by domain</Text>
         <View style={pdfStyles.tableHeaderRow}>

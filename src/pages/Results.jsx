@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useAssessment } from '../context/AssessmentContext.jsx'
 import { scoreAnswers, getMaturityTier } from '../lib/scoring.js'
+import { findStateGuidance, stateGuidanceRecommendation, stateGuidanceMeta } from '../lib/stateGuidance.js'
 import { downloadPdf } from '../lib/pdf/download.js'
 import GapAssessmentReport from '../lib/pdf/GapAssessmentReport.jsx'
 import PolicyOutline from '../lib/pdf/PolicyOutline.jsx'
@@ -27,6 +28,7 @@ export default function Results() {
   const result = scoreAnswers(answers, skippedOptional)
   const tier = getMaturityTier(result.percent)
   const namePart = intake.districtName ? intake.districtName.replace(/[^a-z0-9]+/gi, '-').toLowerCase() : 'district'
+  const stateGuidance = findStateGuidance(intake.state)
   const docProps = { intake, result, tier, answers, skippedOptional }
 
   function handleReset() {
@@ -78,11 +80,30 @@ export default function Results() {
     <div className="page results-page">
       <h1>Your results</h1>
 
-      {(intake.districtName || intake.role) && (
+      {(intake.districtName || intake.role || intake.state) && (
         <section className="district-snapshot">
           {intake.districtName && <p><strong>{intake.districtName}</strong></p>}
           <p className="score-note">
-            {[intake.role, intake.enrollment, intake.schoolCount].filter(Boolean).join(' · ')}
+            {[intake.state, intake.role, intake.enrollment, intake.schoolCount].filter(Boolean).join(' · ')}
+          </p>
+        </section>
+      )}
+
+      {stateGuidance && (
+        <section className="state-callout">
+          <h2>Your state's guidance</h2>
+          <p>
+            <strong>{stateGuidance.state}</strong>
+            <span className="badge">{stateGuidance.status}</span>
+          </p>
+          {stateGuidanceMeta(stateGuidance) && (
+            <p className="helper-text">{stateGuidanceMeta(stateGuidance)}</p>
+          )}
+          <p>{stateGuidance.summary}</p>
+          <p>{stateGuidanceRecommendation(stateGuidance)}</p>
+          <p className="helper-text">
+            Last reviewed {stateGuidance.lastReviewed}. See the{' '}
+            <a href="/best-practices">Best Practices portal</a> for how other states have approached this.
           </p>
         </section>
       )}

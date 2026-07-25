@@ -43,12 +43,12 @@ export default function Home() {
       >
         <div className="container">
           <div className="hero-image-content">
-            <span className="eyebrow eyebrow-gold">AI Policy &middot; Data Privacy &middot; Staff Readiness</span>
-            <h1>Responsible AI governance, built for K-12 districts.</h1>
+            <span className="eyebrow eyebrow-gold">AI Policy &middot; Data Privacy &middot; Cybersecurity &middot; Staff Readiness</span>
+            <h1>Cybersecurity and responsible AI governance, built for K-12 districts.</h1>
             <p className="hero-sub">
               A practical tutorial and self-assessment covering six governance domains,
-              from board policy to classroom-level data privacy, so your district knows
-              where it stands and what to do next.
+              from board policy to classroom-level data privacy to infrastructure security,
+              so your district knows where it stands and what to do next.
             </p>
             <div className="hero-image-actions">
               <Button to="/assessment" variant="primary">Take the self-assessment</Button>

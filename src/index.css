@@ -938,6 +938,21 @@ main {
 .district-snapshot {
   margin-bottom: 1.5em;
 }
+.state-callout {
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 10px;
+  background: var(--surface);
+  padding: 1.2em 1.4em;
+  margin-bottom: 1.8em;
+}
+.state-callout h2 {
+  margin-top: 0;
+  font-size: 1.15rem;
+}
+.state-callout p:last-child {
+  margin-bottom: 0;
+}
 .question-list {
   display: flex;
   flex-direction: column;

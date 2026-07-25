@@ -18,7 +18,7 @@ export default function Nav() {
       <div className="site-nav-inner">
         <NavLink to="/" className="brand" end>
           <span className="brand-mark" aria-hidden="true">AI</span>
-          <span className="brand-text">District AI Governance Tutorial</span>
+          <span className="brand-text">District Cybersecurity &amp; AI Governance Tutorial</span>
         </NavLink>
         <nav aria-label="Primary">
           <ul className="nav-links">
